@@ -19,15 +19,7 @@ ul{line-height:1.8}
 .bar{height:100%;width:100%;background:#2f6bff;animation:load 2s}
 @keyframes load{from{width:0}to{width:100%}}
 
-.like-box{
-position:fixed;right:20px;bottom:20px;z-index:9999;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(10px);
-padding:10px 16px;border-radius:30px;
-border:1px solid rgba(255,255,255,.25);
-color:#fff;font-family:Arial;cursor:pointer;
-user-select:none;transition:.2s}
-.like-box:hover{transform:scale(1.05)}
+.like-box{position:fixed;right:20px;bottom:20px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);padding:10px 15px;border-radius:30px;color:#fff;cursor:pointer;border:1px solid rgba(255,255,255,.2);z-index:9999}
 </style></head><body>
 <div class="wrap">
 <div class="hero">
@@ -67,16 +59,6 @@ function tick(){
  info.innerHTML="<strong>Lançamento em:</strong> "+d+"d "+h+"h "+m+"m "+s+"s";
 }
 setInterval(tick,1000);tick();
-</script><div class="like-box" id="likeBtn">👍 Likes: <span id="likeCount">0</span></div><script>
-const KEY='startplay_like_count';
-const CLICK='startplay_like_clicked';
-let c=parseInt(localStorage.getItem(KEY)||'0');
+</script><div class="like-box" id="likeBtn">👍 Likes: <span id="likeCount">0</span></div><script>let c=Number(localStorage.getItem('likes')||0);
 document.getElementById('likeCount').textContent=c;
-document.getElementById('likeBtn').onclick=()=>{
- if(localStorage.getItem(CLICK)){alert('Você já curtiu neste navegador.');return;}
- c++;
- localStorage.setItem(KEY,c);
- localStorage.setItem(CLICK,'1');
- document.getElementById('likeCount').textContent=c;
-};
-</script></body></html>
+document.getElementById('likeBtn').onclick=()=>{c++;localStorage.setItem('likes',c);document.getElementById('likeCount').textContent=c;}</script></body></html>
